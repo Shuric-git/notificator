@@ -1,20 +1,10 @@
-import { Button, Modal } from 'antd';
-import React, {useContext, useEffect, useState} from 'react';
-import {Notification} from "./Notification/Notification";
+import React, {useEffect, useState} from 'react';
 import Header from "./Header/Header";
 import ModalC from "./Modal/Modal";
+import {INote} from "./interfaces";
+import {NoteContext} from "./NoteContext/NoteContext";
 import 'antd/dist/antd.css';
 
- interface INote{
-    id: number,
-    title: string,
-    body: string,
-    done: boolean,
-}
-
-export type { INote }
-
-export const NoteContext = React.createContext()
 const App = () => {
 
     const notifications = [{
@@ -67,6 +57,18 @@ const App = () => {
             title: 'note8',
             body: 'lorem ipsum',
             done: false,
+        },
+        {
+            id: 9,
+            title: 'note9',
+            body: 'lorem ipsum',
+            done: false,
+        },
+        {
+            id: 10,
+            title: 'note10',
+            body: 'lorem ipsum',
+            done: false,
         }
     ]
 
@@ -109,10 +111,7 @@ const App = () => {
 
     return (
         <>
-            <Header counter={counter(notes)}/>
-            <Button type="primary" onClick={showModal}>
-                Open Modal
-            </Button>
+            <Header counter={counter(notes)} showModal={showModal}/>
             <NoteContext.Provider value={{
                 notifications: notes,
                 doneHandler: doneHandler,

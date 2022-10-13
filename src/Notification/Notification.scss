@@ -1,4 +1,18 @@
-.note__wrapper {
+.note {
   display: flex;
   justify-content: space-between;
+
+  &__btn {
+    background-color: #40a9ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    opacity: 100%;
+    transition: opacity linear 300ms;
+
+    &:hover {
+      opacity: 80%;
+      cursor: pointer;
+    }
+  }
 }
