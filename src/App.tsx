@@ -77,9 +77,11 @@ const App = () => {
 
 
     useEffect(() => {
-        setTimeout(() => {
-            setNotes(loadNotifications(notes, secondPack))
-        }, 2000)
+        let timeOut: string | number | NodeJS.Timeout | undefined
+            timeOut = setInterval(() => {
+                if (secondPack.length < 2) clearInterval(timeOut)
+                setNotes(loadNotifications(notes, secondPack))
+            }, 1000)
     },[])
 
     function counter(notifications: INote[]) {
@@ -106,7 +108,9 @@ const App = () => {
     };
 
     function loadNotifications(firstPack: INote[], secondPack: INote[]) {
-        return [...firstPack, ...secondPack]
+        // @ts-ignore
+        firstPack.push(secondPack.shift())
+        return [...firstPack]
     }
 
     return (
